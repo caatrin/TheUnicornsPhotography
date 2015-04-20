@@ -8,4 +8,6 @@
     <body>
         <h1>Hello World from Index page!</h1>
     </body>
+    
+    <a href="posts">Go to Post List</a>
 </html>
