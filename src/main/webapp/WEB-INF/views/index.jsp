@@ -6,23 +6,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome to The Unicorns Photography</title>
+<title>Unicorns Photography</title>
 </head>
 <body>
-
-<!--<div id="lang">
-	<a href="?language=en" >English</a>|<a href="?language=ro" >Romanian</a>|<a href="?language=es" >Spanish</a>						
-</div>-->
-
-	<form action="displaysignup" class="indexMarginTop">
-		<input type="submit" value="<spring:message code="index.signup"/>"  class="loginBtnClass"/>
+<h1 id="mainHead">Welcome to The Unicorns Photography</h1>
+<div>
+	<form action="displayregister" >
+            <input type="submit"  value = "Register"/>
 	</form>
-	<form action="displaylogin" class="indexMarginTop">
-		<input type="submit" value="<spring:message code="index.login"/>" class="loginBtnClass"/>
-	</form>
-</div>
+    <br />
 
-<h1 id="mainHead"><spring:message code="index.welcomeTitle"/></h1>
-	
+	<form action="displaylogin" >
+            <input type="submit"  value = "login"/>
+	</form>
+</div>	
 </body>
 </html>

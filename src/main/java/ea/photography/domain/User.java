@@ -1,11 +1,22 @@
 package ea.photography.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+@Entity
 public class User {
-    
+    @Id
+    @GeneratedValue
     private Long userId;
+    @NotNull
     private String email;
     private String password;
+    private String confirmPassword;
+    @NotNull
     private String firstname;
+    @NotNull
     private String lastname;
     private String role;
 
@@ -34,6 +45,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public String getFirstname() {
