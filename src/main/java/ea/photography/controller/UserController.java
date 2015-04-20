@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UserController {
 
-    @RequestMapping(value = "/displayregister", method = RequestMethod.GET)
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String displayRegister(@ModelAttribute("newUser") User user)
             throws Exception {
         return "register";

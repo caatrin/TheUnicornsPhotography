@@ -2,6 +2,7 @@
          pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -11,14 +12,14 @@
     <body>
         <h1 id="mainHead">Welcome to The Unicorns Photography Index</h1>
         <div>
-            <form action="displayregister" >
+            <form:form commandName="newUser" action="register" method="get">
                 <input type="submit"  value = "Register"/>
-            </form>
+            </form:form>
             <br />
 
-            <form action="displaylogin" >
+            <form:form action="displaylogin" >
                 <input type="submit"  value = "login"/>
-            </form>
+            </form:form>
         </div>	
         <a href="posts">Go to Post List</a>
     </body>
