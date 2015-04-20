@@ -11,7 +11,7 @@ import java.util.Collection;
 
 public class UserDao implements IUserDao{
     
-private SessionFactory sf;
+//private SessionFactory sf;
 
 
     @Override
