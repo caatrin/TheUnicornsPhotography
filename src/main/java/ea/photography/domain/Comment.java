@@ -1,14 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ea.photography.domain;
 
-/**
- *
- * @author caatrin
- */
+import java.util.Date;
+
 public class Comment {
+    
+    private Long commentId;
+    private String comment;
+    private Date date;
+    private User user;
+
+    public Comment() {
+    }
+
+    public Long getCommentId() {
+        return commentId;
+    }
+
+//    public void setCommentId(Long commentId) {
+//        this.commentId = commentId;
+//    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
     
 }
