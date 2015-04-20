@@ -1,19 +1,33 @@
 package ea.photography.domain;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Post {
-    
+
+    @Id
+    @GeneratedValue
     private Long postId;
     private String title;
     private String description;
     private String picturename;
+    @OneToMany
+    @JoinColumn(name = "post_id")
     private List<Comment> comments;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User author;
 
     public Post() {
     }
 
+    
     public Long getPostId() {
         return postId;
     }
