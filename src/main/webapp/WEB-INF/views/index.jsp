@@ -1,11 +1,28 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Index</title>
-    </head>
-    <body>
-        <h1>Hello World from Index page!</h1>
-    </body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Welcome to The Unicorns Photography</title>
+</head>
+<body>
+
+<!--<div id="lang">
+	<a href="?language=en" >English</a>|<a href="?language=ro" >Romanian</a>|<a href="?language=es" >Spanish</a>						
+</div>-->
+
+	<form action="displaysignup" class="indexMarginTop">
+		<input type="submit" value="<spring:message code="index.signup"/>"  class="loginBtnClass"/>
+	</form>
+	<form action="displaylogin" class="indexMarginTop">
+		<input type="submit" value="<spring:message code="index.login"/>" class="loginBtnClass"/>
+	</form>
+</div>
+
+<h1 id="mainHead"><spring:message code="index.welcomeTitle"/></h1>
+	
+</body>
 </html>
