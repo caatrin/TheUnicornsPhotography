@@ -20,9 +20,15 @@
 
     <mvc:annotation-driven />
     <context:component-scan base-package="ea.photography" />
+    <bean id="userService" class="ea.photography.service.UserService" >
+        <property name="userDao" ref="userDao" />
+    </bean>
 
     <bean id="postDao"  class="ea.photography.dao.PostDao">
         <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="userDao" class="ea.photography.dao.UserDao" >
+        <property name= "sessionFactory" ref="sessionFactory" />
     </bean>
 	
     <bean id = "postService" class="ea.photography.service.PostService">

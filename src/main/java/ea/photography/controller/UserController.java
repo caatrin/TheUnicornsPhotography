@@ -6,13 +6,21 @@
 package ea.photography.controller;
 
 import ea.photography.domain.User;
+import ea.photography.service.UserService;
+import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
+    
+    @Autowired
+    private UserService userService;
+    
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String displayRegister(@ModelAttribute("newUser") User user)
@@ -21,8 +29,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@ModelAttribute("newUser") User user)
+    public String register(@Valid @ModelAttribute("newUser") User user, BindingResult bindingResult)
             throws Exception {
+        if(bindingResult.hasErrors()){
+            return "register";
+        }
+        userService.createUser(user);
         return "login";
     }
 
