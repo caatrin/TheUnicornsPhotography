@@ -20,7 +20,7 @@
             </sec:authorize>
                 <c:forEach var="post" items="${postList}">
                 <tr>
-                    <td><a href="postDetails/${post.postId}">${post.title}</a></td>
+                    <td><a href="postDetail/${post.postId}">${post.title}</a></td>
                     <td>${post.description}</td>
                     <td>${post.postDate}</td>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">

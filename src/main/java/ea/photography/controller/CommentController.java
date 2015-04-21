@@ -6,14 +6,18 @@
 package ea.photography.controller;
 
 import ea.photography.domain.Comment;
+import ea.photography.domain.Post;
 import ea.photography.service.CommentService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
 
 @Controller
 public class CommentController {
@@ -21,15 +25,15 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
     
-    @RequestMapping(value = "/addComment", method = RequestMethod.POST)
+    @RequestMapping(value = "/postDetail/addComment", method = RequestMethod.POST)
     public String addComment(@Valid @ModelAttribute("comment") Comment comment,
                                     BindingResult br) {
         if(br.hasErrors()) {
-            return "post/" + comment.getPost().getPostId();
+            return "postDetail/" + comment.getPost().getPostId();
         }
-        
+        System.out.println("postId" + comment.getPost().getPostId());
         commentService.createComment(comment);
-        return "redirect:/post/" + comment.getPost().getPostId();
+        return "redirect:/postDetail/" + comment.getPost().getPostId();
     }
     
     
