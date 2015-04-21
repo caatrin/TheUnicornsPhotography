@@ -16,37 +16,38 @@
             <th>Description</th>
             <th>Created Date</th>
             <sec:authorize access="hasRole('ROLE_ADMIN')">
-            <th>Actions</th>
+                <th>Actions</th>
             </sec:authorize>
-            <c:forEach var="post" items="${postList}">
+                <c:forEach var="post" items="${postList}">
                 <tr>
                     <td>${post.title}</td>
                     <td>${post.description}</td>
                     <td>${post.postDate}</td>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <td>
+                        <td>
                         <form:form action="editPost" method="post">
                             <input type="hidden" name="postId" value="${post.postId}">
-                            <input type="submit" value="Edit">
-                        </form:form>
-                    </td>
+                                <input type="submit" value="Edit">
+                            </form:form>
+                        </td>
                     </sec:authorize>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <td>
+                        <td>
                         <form:form action="deletePost" method="post">
                             <input type="hidden" name="postId" value="${post.postId}">
-                            <input type="submit" value="Delete">
-                        </form:form>
-                    </td>
+                                <input type="submit" value="Delete">
+                            </form:form>
+                        </td>
                     </sec:authorize>
                 </tr>
             </c:forEach>
         </table>
-        
-        <a href="addPost"> Add a Post</a>
-        
-<!--          <sec:authorize url="/addPost">
+        <!--<a href="addPost"> Add a Post</a>-->
+
+        <sec:authorize url="/addPost">
             <a href="addPost"> Add a Post</a>
-        </sec:authorize>-->
+        </sec:authorize>
+
+        <a href="j_spring_security_logout">logout</a>
     </body>
 </html>

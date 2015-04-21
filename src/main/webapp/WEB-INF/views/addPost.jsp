@@ -7,7 +7,7 @@
         <title>Add a New Post</title>
     </head>
     <body>
-          <form:form commandName="post" action="addPost" method="post">
+        <form:form commandName="post" action="addPost" method="post">
             <form:errors path="*" cssClass="errorblock" element="div" />
             <table>
                 <tr>
@@ -21,8 +21,10 @@
                     <td><form:errors path="description" cssClass="error"/> </td>
                 </tr>
             </table>
-                <input type="submit" value="Create Post" />
+            <input type="submit" value="Create Post" />
 
         </form:form>
+
+        <a href="j_spring_security_logout">logout</a>
     </body>
 </html>
