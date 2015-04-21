@@ -30,8 +30,6 @@
                                 <input type="submit" value="Edit">
                             </form:form>
                         </td>
-                    </sec:authorize>
-                    <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <td>
                         <form:form action="deletePost" method="post">
                             <input type="hidden" name="postId" value="${post.postId}">
