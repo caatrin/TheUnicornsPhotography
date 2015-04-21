@@ -80,7 +80,7 @@
                 <value>ea.photography.domain.User</value>
                 <value>ea.photography.domain.Post</value>
                 <value>ea.photography.domain.Comment</value>
-                <value>ea.photography.domain.Authority</value>
+               <!-- <value>ea.photography.domain.Authority</value> -->
             </list>
         </property>
     </bean>

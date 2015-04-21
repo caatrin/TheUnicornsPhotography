@@ -7,6 +7,7 @@ package ea.photography.service;
 
 import ea.photography.dao.PostDao;
 import ea.photography.domain.Post;
+import java.util.Calendar;
 import java.util.List;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,20 @@ public class PostService {
     
     public List<Post> getAllPost(){
         return postDao.getAll();
+    }
+
+    public Post getPostById(Long postId) {
+        return postDao.get(postId);
+    }
+
+    public void editPost(Long postId, Post post) {
+        Calendar cal = Calendar.getInstance();
+        post.setPostDate(cal.getTime());
+        postDao.update(postId, post);
+    }
+
+    public void deletePost(Long postId) {
+        postDao.delete(postId);
     }
     
 }

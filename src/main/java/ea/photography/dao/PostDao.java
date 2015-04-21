@@ -43,20 +43,21 @@ public class PostDao implements IPostDao {
 
     @Override
     public Post get(Long postId) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-        //To change body of generated methods, choose Tools | Templates.
+        StringBuilder builder = new StringBuilder("from Post p where p.postId = ");
+        builder.append(postId);
+        Post post = (Post) sessionFactory.getCurrentSession().createQuery(builder.toString()).uniqueResult();
+        return post;
     }
 
     @Override
     public void update(Long postId, Post post) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-        //To change body of generated methods, choose Tools | Templates.
+        sessionFactory.getCurrentSession().update(post);
     }
 
     @Override
     public void delete(Long postId) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-        //To change body of generated methods, choose Tools | Templates.
+        Post post = (Post) sessionFactory.getCurrentSession().load(Post.class, postId);
+        sessionFactory.getCurrentSession().delete(post);
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {

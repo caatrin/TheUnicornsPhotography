@@ -15,8 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PostController {
@@ -37,18 +39,39 @@ public class PostController {
     }
     
     @RequestMapping(value = "/addPost", method = RequestMethod.GET)
-    public String getAddPost(@ModelAttribute("post") Post post, BindingResult br) {
-        
+    public String getAddPost(@ModelAttribute("post") Post post, BindingResult br) { 
         return "addPost";
     }
     
     @RequestMapping(value = "/addPost", method = RequestMethod.POST)
-    public String addNewPost(@Valid Post post, BindingResult br) {
+    public String addNewPost(@Valid @ModelAttribute("post") Post post, BindingResult br) {
         if(br.hasErrors()){
             return "addPost";
         }
         
         postService.addNewPost(post);
+        return "redirect:/posts";
+    }
+    
+    @RequestMapping(value = "/editPost", method = RequestMethod.POST)
+    public String getEditPost(@RequestParam Long postId, Model model) {
+        model.addAttribute("post", postService.getPostById(postId));
+        return "editPost";
+    }
+    
+    @RequestMapping(value = "/updatePost", method = RequestMethod.POST)
+    public String editPost(@Valid @ModelAttribute("post") Post post, BindingResult br) {
+        if(br.hasErrors()){
+            return "editPost";
+        }
+        
+        postService.editPost(post.getPostId(), post);
+        return "redirect:/posts";
+    }
+    
+    @RequestMapping(value = "/deletePost", method = RequestMethod.POST)
+    public String deletePost(@RequestParam Long postId, Model model) {
+        postService.deletePost(postId);
         return "redirect:/posts";
     }
     
