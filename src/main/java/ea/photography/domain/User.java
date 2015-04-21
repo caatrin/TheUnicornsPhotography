@@ -28,14 +28,11 @@ public class User implements Serializable {
     private String firstname;
     @NotNull
     private String lastname;
-    //@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    //@JoinColumn(name = "authority_email", referencedColumnName = "email")
-    //private Authority authority;
-    //@Column(name = "ENABLED")
-    //Boolean enabled;
+    private String role;
+    private boolean enabled;
     
     public User() {
-        //enabled = true;
+        enabled = true;
     }
 
     public Long getUserId() {
@@ -85,15 +82,22 @@ public class User implements Serializable {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-
-    /*
-    public Authority getAuthority() {
-        return authority;
+    
+    public String getRole() {
+        return role;
     }
 
-    public void setAuthority(Authority authority) {
-        this.authority = authority;
+    public void setRole(String role) {
+        this.role = role;
     }
-    */
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+    
     
 }
