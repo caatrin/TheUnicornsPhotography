@@ -3,6 +3,7 @@ package ea.photography.domain;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -25,7 +26,7 @@ public class Post {
     private String picturename;
     @Temporal(TemporalType.DATE)
     private Date postDate;
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
 //    @JoinColumn(name = "post_id")
     private List<Comment> comments;
     @ManyToOne

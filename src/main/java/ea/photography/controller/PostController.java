@@ -6,6 +6,7 @@
 package ea.photography.controller;
 
 import ea.photography.dao.IPostDao;
+import ea.photography.domain.Comment;
 import ea.photography.domain.Post;
 import ea.photography.service.PostService;
 import javax.annotation.Resource;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 public class PostController {
@@ -36,11 +38,6 @@ public class PostController {
     public String getAll(Model model) {
         model.addAttribute("postList", postService.getAllPost());
         return "postList";
-    }
-    @RequestMapping(value = "postDetails/${post.postId}", method = RequestMethod.GET)
-    public String getPostDetails(@PathVariable Long postId, Model model) {
-        //model.addAttribute("post", postService.g);
-        return "postDetails";
     }
     
     @RequestMapping(value = "/addPost", method = RequestMethod.GET)
@@ -79,5 +76,16 @@ public class PostController {
         postService.deletePost(postId);
         return "redirect:/posts";
     }
+    
+    @RequestMapping(value = "/postDetail/{postId}", method = RequestMethod.GET)
+    public String getPostDetails(@PathVariable Long postId, Model model) {
+        Comment comment = new Comment();
+        Post post = postService.getPostById(postId);
+        model.addAttribute("post", post);
+        comment.setPost(post);
+        model.addAttribute("comment", comment);
+        return "postDetail";
+    }
+    
     
 }

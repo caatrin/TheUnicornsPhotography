@@ -8,6 +8,8 @@ package ea.photography.service;
 import ea.photography.dao.CommentDao;
 import ea.photography.dao.IComment;
 import ea.photography.domain.Comment;
+import ea.photography.domain.User;
+import java.util.Calendar;
 import java.util.List;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,11 @@ public class CommentService {
     }
     
     public void createComment(Comment comment) {
+        User user = new User();
+        Calendar cal = Calendar.getInstance();
+        comment.setCommentDate(cal.getTime());
+        user.setUserId(1L);
+        comment.setUser(user);
         commentDao.createCommment(comment);
     }
     

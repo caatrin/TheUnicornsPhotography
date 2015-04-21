@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Comment {
@@ -15,6 +16,7 @@ public class Comment {
     @Id
     @GeneratedValue
     private Long commentId;
+    @NotBlank
     private String comment;
     @Temporal(TemporalType.DATE)
     private Date commentDate;
@@ -67,7 +69,6 @@ public class Comment {
     public void setPost(Post post) {
         this.post = post;
     }
-    
     
     
     

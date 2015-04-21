@@ -21,6 +21,7 @@
         <intercept-url pattern="/loginfailed" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/register" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/addPost"  access="ROLE_ADMIN" />
+        <intercept-url pattern="/postDetail/addComment" method="POST" access="ROLE_USER,ROLE_ADMIN" />
         <intercept-url pattern="/**" method="POST" access="ROLE_ADMIN" />
         <intercept-url pattern="/**" method="GET" access="ROLE_USER,ROLE_ADMIN" />
         <form-login login-page="/login" authentication-failure-url="/loginfailed" 
