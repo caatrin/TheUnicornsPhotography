@@ -4,10 +4,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Login</title>
     </head>
     <body>
-         <h1>Login Page!</h1>
+         <h1>Login for Unicorns Photography</h1>
         <c:if test="${error eq true}">
             <p>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
         </c:if>

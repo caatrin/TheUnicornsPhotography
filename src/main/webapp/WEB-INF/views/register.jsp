@@ -55,10 +55,7 @@
  				<form:errors path="confirmPassword" cssStyle="color : red;" /> 
  			</div>
 		</p>
-                <p>
-			<form:input type="hidden" id="thisField" name="inputName" value="USER" path = "role" />
-		</p>
-		
+               
 	</fieldset>
 	
 	<p id="buttons">

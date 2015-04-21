@@ -1,16 +1,26 @@
 package ea.photography.domain;
 
+import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class User {
+public class User implements Serializable {
+    
+    private static final long serialVersionUID = 8901897921686095402L;
+    
     @Id
     @GeneratedValue
     private Long userId;
     @NotNull
+    @Column(nullable = false, unique = true)
     private String email;
     private String password;
     private String confirmPassword;
@@ -18,9 +28,14 @@ public class User {
     private String firstname;
     @NotNull
     private String lastname;
-    private String role;
-
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "authority_email", referencedColumnName = "email")
+    private Authority authority;
+    @Column(name = "ENABLED")
+    Boolean enabled;
+    
     public User() {
+        enabled = true;
     }
 
     public Long getUserId() {
@@ -71,14 +86,13 @@ public class User {
         this.lastname = lastname;
     }
 
-    public String getRole() {
-        return role;
+    public Authority getAuthority() {
+        return authority;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
     }
-    
-    
+
     
 }
