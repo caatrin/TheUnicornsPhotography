@@ -37,6 +37,11 @@ public class PostController {
         model.addAttribute("postList", postService.getAllPost());
         return "postList";
     }
+    @RequestMapping(value = "postDetails/${post.postId}", method = RequestMethod.GET)
+    public String getPostDetails(@PathVariable Long postId, Model model) {
+        //model.addAttribute("post", postService.g);
+        return "postDetails";
+    }
     
     @RequestMapping(value = "/addPost", method = RequestMethod.GET)
     public String getAddPost(@ModelAttribute("post") Post post, BindingResult br) { 

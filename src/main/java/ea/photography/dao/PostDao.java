@@ -27,7 +27,7 @@ public class PostDao implements IPostDao {
     
     @Override
     public List<Post> getAll() {
-        return sessionFactory.getCurrentSession().createQuery("from Post order by postDate").list();
+        return sessionFactory.getCurrentSession().createQuery("from Post order by postDate desc").list();
     }
 
     @Override

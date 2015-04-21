@@ -25,7 +25,7 @@ public class Post {
     private String picturename;
     @Temporal(TemporalType.DATE)
     private Date postDate;
-    @OneToMany
+    @OneToMany(mappedBy = "post")
     @JoinColumn(name = "post_id")
     private List<Comment> comments;
     @ManyToOne
@@ -90,6 +90,7 @@ public class Post {
 
     public void setPostDate(Date postDate) {
         this.postDate = postDate;
-    }        
+    }  
+    
     
 }
