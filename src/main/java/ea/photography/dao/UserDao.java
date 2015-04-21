@@ -8,15 +8,24 @@ package ea.photography.dao;
 import ea.photography.domain.User;
 import java.util.ArrayList;
 import java.util.Collection;
+import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-public class UserDao implements IUserDao{
-    
-//private SessionFactory sf;
+@Transactional(propagation = Propagation.MANDATORY)
 
+public class UserDao implements IUserDao {
+
+    private SessionFactory sf;
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void setSessionFactory(SessionFactory sf) {
+        this.sf = sf;
+    }
 
     @Override
     public void createUser(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sf.getCurrentSession().persist(user);
     }
-    
+
 }
