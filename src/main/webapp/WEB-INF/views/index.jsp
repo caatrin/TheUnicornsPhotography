@@ -17,7 +17,7 @@
             </form:form>
             <br />
 
-            <form:form action="displaylogin" >
+            <form:form action="posts" method="get">
                 <input type="submit"  value = "login"/>
             </form:form>
         </div>	
