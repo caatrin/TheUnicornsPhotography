@@ -34,6 +34,7 @@ public class UserController {
         if(bindingResult.hasErrors()){
             return "register";
         }
+        user.setRole("ROLE_USER");
         userService.createUser(user);
         return "login";
     }
