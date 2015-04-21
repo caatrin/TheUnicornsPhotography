@@ -17,10 +17,13 @@ public class Comment {
     private Long commentId;
     private String comment;
     @Temporal(TemporalType.DATE)
-    private Date date;
+    private Date commentDate;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
 
     public Comment() {
     }
@@ -29,9 +32,9 @@ public class Comment {
         return commentId;
     }
 
-//    public void setCommentId(Long commentId) {
-//        this.commentId = commentId;
-//    }
+    public void setCommentId(Long commentId) {
+        this.commentId = commentId;
+    }
 
     public String getComment() {
         return comment;
@@ -41,12 +44,12 @@ public class Comment {
         this.comment = comment;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCommentDate() {
+        return commentDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCommentDate(Date commentDate) {
+        this.commentDate = commentDate;
     }
 
     public User getUser() {
@@ -56,6 +59,16 @@ public class Comment {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+    
+    
     
     
 }

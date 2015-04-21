@@ -6,8 +6,6 @@
 package ea.photography.dao;
 
 import ea.photography.domain.User;
-import java.util.ArrayList;
-import java.util.Collection;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

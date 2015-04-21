@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -34,6 +35,11 @@ public class PostController {
     public String getAll(Model model) {
         model.addAttribute("postList", postService.getAllPost());
         return "postList";
+    }
+    @RequestMapping(value = "postDetails/${post.postId}", method = RequestMethod.GET)
+    public String getPostDetails(@PathVariable Long postId, Model model) {
+        //model.addAttribute("post", postService.g);
+        return "postDetails";
     }
     
     @RequestMapping(value = "/addPost", method = RequestMethod.GET)
