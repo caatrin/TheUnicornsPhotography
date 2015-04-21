@@ -26,7 +26,7 @@ public class Post {
     @Temporal(TemporalType.DATE)
     private Date postDate;
     @OneToMany(mappedBy = "post")
-    @JoinColumn(name = "post_id")
+//    @JoinColumn(name = "post_id")
     private List<Comment> comments;
     @ManyToOne
     @JoinColumn(name = "user_id")

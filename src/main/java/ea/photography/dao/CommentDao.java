@@ -13,7 +13,7 @@ public class CommentDao implements IComment{
     private SessionFactory sf;
 
     @Transactional(propagation = Propagation.SUPPORTS)
-    public void setSf(SessionFactory sf) {
+    public void setSessionFactory(SessionFactory sf) {
         this.sf = sf;
     }
     
