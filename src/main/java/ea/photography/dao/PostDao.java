@@ -6,24 +6,39 @@
 package ea.photography.dao;
 
 import ea.photography.domain.Post;
+import ea.photography.domain.User;
+import java.util.Calendar;
 import java.util.List;
+import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
+ * use photography;
+    INSERT INTO user VALUES(1, "123", "admin@gmail.com","Maharishi","Yogi Bear", "123", "ADMIN");
+    commit;
+* 
  * @author caatrin
  */
+@Transactional
 public class PostDao implements IPostDao {
 
+    private SessionFactory sessionFactory;
+    
     @Override
     public List<Post> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-        //To change body of generated methods, choose Tools | Templates.
+        return sessionFactory.getCurrentSession().createQuery("from Post order by postDate").list();
     }
 
     @Override
     public void add(Post post) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-        //To change body of generated methods, choose Tools | Templates.
+        //sessionFactory.getCurrentSession().
+        User user = new User();
+        Calendar cal = Calendar.getInstance();
+        post.setPostDate(cal.getTime());
+        user.setUserId(1L);
+        post.setAuthor(user);
+        sessionFactory.getCurrentSession().persist(post);
     }
 
     @Override
@@ -43,5 +58,10 @@ public class PostDao implements IPostDao {
         throw new UnsupportedOperationException("Not supported yet."); 
         //To change body of generated methods, choose Tools | Templates.
     }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+    
     
 }

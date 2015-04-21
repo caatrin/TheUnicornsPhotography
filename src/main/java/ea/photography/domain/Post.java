@@ -1,5 +1,6 @@
 package ea.photography.domain;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Post {
@@ -14,9 +18,13 @@ public class Post {
     @Id
     @GeneratedValue
     private Long postId;
+    @NotBlank
     private String title;
+    @NotBlank
     private String description;
     private String picturename;
+    @Temporal(TemporalType.DATE)
+    private Date postDate;
     @OneToMany
     @JoinColumn(name = "post_id")
     private List<Comment> comments;
@@ -75,6 +83,13 @@ public class Post {
     public void setAuthor(User author) {
         this.author = author;
     }
-    
+
+    public Date getPostDate() {
+        return postDate;
+    }
+
+    public void setPostDate(Date postDate) {
+        this.postDate = postDate;
+    }        
     
 }

@@ -7,7 +7,10 @@ package ea.photography.controller;
 
 import ea.photography.dao.IPostDao;
 import ea.photography.domain.Post;
+import ea.photography.service.PostService;
 import javax.annotation.Resource;
+import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,10 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class PostController {
-    
-    @Resource
-    private IPostDao postDao;
-    
+
+    @Autowired
+    private PostService postService;
 
     @RequestMapping("/")
     public String redirectRoot() {
@@ -30,7 +32,7 @@ public class PostController {
     
     @RequestMapping(value = "/posts", method = RequestMethod.GET)
     public String getAll(Model model) {
-        //model.addAttribute("posts", postDao.getAll());
+        model.addAttribute("postList", postService.getAllPost());
         return "postList";
     }
     
@@ -38,6 +40,16 @@ public class PostController {
     public String getAddPost(@ModelAttribute("post") Post post, BindingResult br) {
         
         return "addPost";
+    }
+    
+    @RequestMapping(value = "/addPost", method = RequestMethod.POST)
+    public String addNewPost(@Valid Post post, BindingResult br) {
+        if(br.hasErrors()){
+            return "addPost";
+        }
+        
+        postService.addNewPost(post);
+        return "redirect:/posts";
     }
     
 }

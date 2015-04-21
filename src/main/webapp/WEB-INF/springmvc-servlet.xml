@@ -24,12 +24,17 @@
         <property name="userDao" ref="userDao" />
     </bean>
 
-    <bean id="postDao"  class="ea.photography.dao.PostDao" />
+    <bean id="postDao"  class="ea.photography.dao.PostDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
     <bean id="userDao" class="ea.photography.dao.UserDao" >
         <property name= "sessionFactory" ref="sessionFactory" />
     </bean>
 	
-
+    <bean id = "postService" class="ea.photography.service.PostService">
+        <property name="postDao" ref="postDao" />
+    </bean>
+      
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources 
     in the /WEB-INF/views directory -->
     <bean
@@ -63,7 +68,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost/photography" />
         <property name="username" value="root" />
-        <property name="password" value="" />
+        <property name="password" value="root" />
     </bean>
     <bean id="sessionFactory" 
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -84,7 +89,7 @@
           class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="properties">
             <props>
-                <prop key="hibernate.hbm2ddl.auto" >create</prop>
+               <!-- <prop key="hibernate.hbm2ddl.auto" >create</prop> -->
                 <prop key="hibernate.dialect" >org.hibernate.dialect.MySQL5Dialect</prop>
                 <prop key="connection.pool.size" >1</prop>
                 <prop key="hibernate.show_sql" >true</prop>
@@ -98,6 +103,6 @@
     </bean>
 
     <!-- look for transaction annotations -->
-    <tx:annotation-driven transaction-manager="txManager" />
+    <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
 
 </beans>

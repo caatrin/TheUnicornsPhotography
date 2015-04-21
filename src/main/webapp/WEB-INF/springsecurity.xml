@@ -20,8 +20,9 @@
         <intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/loginfailed" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/register" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/addPost" method="GET" access="ROLE_ADMIN" />
         <intercept-url pattern="/**" method="POST" access="ROLE_ADMIN" />
-        <!--<intercept-url pattern="/addCar" method="GET" access="ROLE_ADMIN" />-->
+        <intercept-url pattern="/**" method="GET" access="ROLE_USER" />
         <intercept-url pattern="/**" access="ROLE_USER" method="GET" />
         <form-login login-page="/login" authentication-failure-url="/loginfailed" 
                     default-target-url="/posts"/>
