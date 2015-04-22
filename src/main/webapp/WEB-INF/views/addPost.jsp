@@ -7,13 +7,18 @@
         <title>Add a New Post</title>
     </head>
     <body>
-        <form:form commandName="post" action="addPost" method="post">
-            <form:errors path="*" cssClass="errorblock" element="div" />
+        <form:form commandName="post" action="addPost" method="post" enctype="multipart/form-data">
+            <%--<form:errors path="*" cssClass="errorblock" element="div" />--%>
             <table>
                 <tr>
                     <td>Title:</td>
                     <td><form:input path="title" /> </td>
                     <td><form:errors path="title" cssClass="error" /> </td>
+                </tr>
+                <tr>
+                    <td>Image:</td>
+                    <td><form:input id="picturename" name="picturename" type="file" path="imageFile"/></td>
+                    <td><form:errors path="picturename" cssClass="error" /> </td>
                 </tr>
                 <tr>
                     <td>Description:</td>

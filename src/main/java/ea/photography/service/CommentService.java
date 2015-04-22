@@ -5,7 +5,6 @@
  */
 package ea.photography.service;
 
-import ea.photography.dao.CommentDao;
 import ea.photography.dao.IComment;
 import ea.photography.domain.Comment;
 import ea.photography.domain.User;
