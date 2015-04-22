@@ -24,11 +24,8 @@ public class CommentService {
     }
     
     public void createComment(Comment comment) {
-        User user = new User();
         Calendar cal = Calendar.getInstance();
         comment.setCommentDate(cal.getTime());
-        user.setUserId(1L);
-        comment.setUser(user);
         commentDao.createCommment(comment);
     }
     

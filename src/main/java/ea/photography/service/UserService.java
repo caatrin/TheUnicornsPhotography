@@ -22,4 +22,8 @@ public class UserService {
     public void createUser(User user){
         userDao.createUser(user);
     }
+    
+    public User getUserByEmail(String email) {
+        return userDao.getUserByEmail(email);
+    }
 }

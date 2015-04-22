@@ -4,6 +4,7 @@ import ea.photography.domain.Post;
 import ea.photography.domain.User;
 import java.util.Calendar;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,20 +28,16 @@ public class PostDao implements IPostDao {
 
     @Override
     public void add(Post post) {
-        //sessionFactory.getCurrentSession().
-        User user = new User();
         Calendar cal = Calendar.getInstance();
         post.setPostDate(cal.getTime());
-        user.setUserId(1L);
-        post.setAuthor(user);
         sessionFactory.getCurrentSession().persist(post);
     }
 
     @Override
     public Post get(Long postId) {
-        StringBuilder builder = new StringBuilder("from Post p where p.postId = ");
-        builder.append(postId);
-        Post post = (Post) sessionFactory.getCurrentSession().createQuery(builder.toString()).uniqueResult();
+        Query query = sessionFactory.getCurrentSession().createQuery("from Post p where p.postId = :postId");
+        query.setParameter("postId", postId);
+        Post post = (Post) query.uniqueResult();
         return post;
     }
 

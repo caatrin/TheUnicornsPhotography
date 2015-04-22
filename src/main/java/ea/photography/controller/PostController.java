@@ -8,8 +8,11 @@ package ea.photography.controller;
 import ea.photography.dao.IPostDao;
 import ea.photography.domain.Comment;
 import ea.photography.domain.Post;
+import ea.photography.domain.User;
 import ea.photography.service.PostService;
+import ea.photography.service.UserService;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,10 +26,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+@SessionAttributes(value = {"user"})
 public class PostController {
 
     @Autowired
     private PostService postService;
+    
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/")
     public String redirectRoot() {
@@ -35,7 +42,10 @@ public class PostController {
     }
     
     @RequestMapping(value = "/posts", method = RequestMethod.GET)
-    public String getAll(Model model) {
+    public String getAll(Model model, HttpServletRequest request) {
+        String email = request.getUserPrincipal().getName();
+        User user = userService.getUserByEmail(email);
+        model.addAttribute("user", user);
         model.addAttribute("postList", postService.getAllPost());
         return "postList";
     }
@@ -46,11 +56,12 @@ public class PostController {
     }
     
     @RequestMapping(value = "/addPost", method = RequestMethod.POST)
-    public String addNewPost(@Valid @ModelAttribute("post") Post post, BindingResult br) {
+    public String addNewPost(@Valid @ModelAttribute("post") Post post, BindingResult br, Model model) {
         if(br.hasErrors()){
             return "addPost";
         }
-        
+        User user = (User) model.asMap().get("user");
+        post.setAuthor(user);
         postService.addNewPost(post);
         return "redirect:/posts";
     }
