@@ -60,7 +60,7 @@
 
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving 
     up static resources in the ${webappRoot}/resources/ directory -->
-    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources mapping="/img/**" location="/WEB-INF/resources/img" />
         
     <!-- import security config -->
     <import resource="springsecurity.xml" />
@@ -108,8 +108,12 @@
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
-
+  
     <!-- look for transaction annotations -->
     <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
+    
+    <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="10240000"/>
+    </bean> 
 
 </beans>

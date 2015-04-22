@@ -50,6 +50,11 @@ public class PostController {
     public String getAll(Model model, HttpServletRequest request) {
         String email = request.getUserPrincipal().getName();
         User user = userService.getUserByEmail(email);
+       
+        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+        StringBuilder picturePath = new StringBuilder(rootDirectory)
+                .append("\\WEB-INF\\resources\\img\\");
+        model.addAttribute("picturePath", picturePath.toString());
         model.addAttribute("user", user);
         model.addAttribute("postList", postService.getAllPost());
         return "postList";
@@ -61,8 +66,8 @@ public class PostController {
     }
 
     @RequestMapping(value = "/addPost", method = RequestMethod.POST)
-    public String addNewPost(@Valid @ModelAttribute("post") Post post, 
-            HttpServletRequest request, BindingResult br, Model model) {
+    public String addNewPost(@Valid @ModelAttribute("post") Post post, Model model, 
+            HttpServletRequest request, BindingResult br) {
 
         if (br.hasErrors()) {
             return "addPost";
@@ -74,10 +79,12 @@ public class PostController {
         if (image != null && !image.isEmpty()) {
 //			System.out.println("hello from if");
             try {
-                DateFormat date = new SimpleDateFormat("MM_dd_YY_hhmm");
-                image.transferTo(new File(rootDirectory + "\\resources\\img\\"
-                        + "image" + post.getPostId() + "_" + date.format(timeStamp) + ".png"));
-                post.setPicturename(image.getOriginalFilename());
+                DateFormat date = new SimpleDateFormat("MM_dd_YY_hhmmss");
+                image.transferTo(new File(rootDirectory + "\\WEB-INF\\resources\\img\\"
+                        + "image" + "_" + date.format(timeStamp) + ".png"));
+                StringBuilder picture = new StringBuilder("image").append("_")
+                        .append(date.format(timeStamp)).append(".png");
+                post.setPicturename(picture.toString());
             } catch (Exception e) {
                 throw new RuntimeException("Image save failed", e);
             }
