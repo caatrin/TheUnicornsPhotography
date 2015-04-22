@@ -6,6 +6,7 @@
 package ea.photography.dao;
 
 import ea.photography.domain.User;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,14 @@ public class UserDao implements IUserDao {
     @Override
     public void createUser(User user) {
         sf.getCurrentSession().persist(user);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        Query query = sf.getCurrentSession().createQuery("from User u where u.email = :email");
+        query.setParameter("email", email);
+        User user = (User) query.uniqueResult();
+        return user;
     }
 
 }

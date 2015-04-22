@@ -7,6 +7,7 @@ package ea.photography.controller;
 
 import ea.photography.domain.Comment;
 import ea.photography.domain.Post;
+import ea.photography.domain.User;
 import ea.photography.service.CommentService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 
 @Controller
+@SessionAttributes(value = {"user"})
 public class CommentController {
     
     @Autowired
@@ -27,11 +29,12 @@ public class CommentController {
     
     @RequestMapping(value = "/postDetail/addComment", method = RequestMethod.POST)
     public String addComment(@Valid @ModelAttribute("comment") Comment comment,
-                                    BindingResult br) {
+                                BindingResult br, Model model) {
         if(br.hasErrors()) {
             return "postDetail/" + comment.getPost().getPostId();
         }
-        System.out.println("postId" + comment.getPost().getPostId());
+        User user = (User) model.asMap().get("user");
+        comment.setUser(user);
         commentService.createComment(comment);
         return "redirect:/postDetail/" + comment.getPost().getPostId();
     }

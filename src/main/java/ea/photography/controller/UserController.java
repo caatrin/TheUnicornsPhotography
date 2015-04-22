@@ -38,10 +38,5 @@ public class UserController {
         userService.createUser(user);
         return "login";
     }
-    
-//    @RequestMapping
-//    public String login() {
-//        
-//    }
 
 }
