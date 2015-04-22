@@ -9,15 +9,11 @@ import ea.photography.domain.Comment;
 import ea.photography.domain.Post;
 import ea.photography.domain.User;
 import ea.photography.service.PostService;
-<<<<<<< HEAD
 import ea.photography.service.UserService;
-import javax.annotation.Resource;
-=======
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
->>>>>>> feature_image
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -64,15 +61,8 @@ public class PostController {
     }
 
     @RequestMapping(value = "/addPost", method = RequestMethod.POST)
-<<<<<<< HEAD
-    public String addNewPost(@Valid @ModelAttribute("post") Post post, BindingResult br, Model model) {
-        if(br.hasErrors()){
-            return "addPost";
-        }
-        User user = (User) model.asMap().get("user");
-        post.setAuthor(user);
-=======
-    public String addNewPost(@Valid @ModelAttribute("post") Post post, HttpServletRequest request, BindingResult br) {
+    public String addNewPost(@Valid @ModelAttribute("post") Post post, 
+            HttpServletRequest request, BindingResult br, Model model) {
 
         if (br.hasErrors()) {
             return "addPost";
@@ -92,7 +82,9 @@ public class PostController {
                 throw new RuntimeException("Image save failed", e);
             }
         }
->>>>>>> feature_image
+        
+        User user = (User) model.asMap().get("user");
+        post.setAuthor(user);
         postService.addNewPost(post);
         return "redirect:/posts";
     }

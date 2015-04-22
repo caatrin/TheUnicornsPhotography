@@ -6,19 +6,17 @@
 package ea.photography.controller;
 
 import ea.photography.domain.Comment;
-<<<<<<< HEAD
-import ea.photography.domain.Post;
 import ea.photography.domain.User;
-=======
->>>>>>> feature_image
 import ea.photography.service.CommentService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 
 @Controller
