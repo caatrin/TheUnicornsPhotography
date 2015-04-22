@@ -22,8 +22,7 @@
                 <c:forEach var="post" items="${postList}">
                 <tr>
                     <td><a href="postDetail/${post.postId}">${post.title}</a></td>
-<!--                    <td><img src="${picturePath}${post.picturename}" alt="Postpic"/></td>-->
-                    <td><img src="/img/coursera.png" /></td>
+                    <td><img src="<c:url value='/img/${post.picturename}'/>" /></td>
                     <td>${post.description}</td>
                     <td>${post.postDate}</td>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">

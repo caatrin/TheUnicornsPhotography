@@ -53,7 +53,7 @@ public class PostController {
        
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
         StringBuilder picturePath = new StringBuilder(rootDirectory)
-                .append("\\WEB-INF\\resources\\img\\");
+                .append("\\resources\\img\\");
         model.addAttribute("picturePath", picturePath.toString());
         model.addAttribute("user", user);
         model.addAttribute("postList", postService.getAllPost());
@@ -80,7 +80,7 @@ public class PostController {
 //			System.out.println("hello from if");
             try {
                 DateFormat date = new SimpleDateFormat("MM_dd_YY_hhmmss");
-                image.transferTo(new File(rootDirectory + "\\WEB-INF\\resources\\img\\"
+                image.transferTo(new File(rootDirectory + "\\resources\\img\\"
                         + "image" + "_" + date.format(timeStamp) + ".png"));
                 StringBuilder picture = new StringBuilder("image").append("_")
                         .append(date.format(timeStamp)).append(".png");
