@@ -12,6 +12,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,7 +35,6 @@ public class Post {
     @Temporal(TemporalType.DATE)
     private Date postDate;
     @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
-//    @JoinColumn(name = "post_id")
     private List<Comment> comments;
     @ManyToOne
     @JoinColumn(name = "user_id")

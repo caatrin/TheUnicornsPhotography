@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostService {
     
     private PostDao postDao;
+    
 
     public PostService() {
     }

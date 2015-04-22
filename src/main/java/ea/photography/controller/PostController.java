@@ -103,11 +103,28 @@ public class PostController {
     }
 
     @RequestMapping(value = "/updatePost", method = RequestMethod.POST)
-    public String editPost(@Valid @ModelAttribute("post") Post post, BindingResult br) {
+    public String editPost(@Valid @ModelAttribute("post") Post post, HttpServletRequest request, BindingResult br) {
         if (br.hasErrors()) {
             return "editPost";
         }
 
+         //upload image
+        MultipartFile image = post.getImageFile();
+        
+        if(image != null && !image.isEmpty()){
+          String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+          try {
+                DateFormat date = new SimpleDateFormat("MM_dd_YY_hhmmss");
+                image.transferTo(new File(rootDirectory + "\\resources\\img\\"
+                        + "image" + "_" + date.format(timeStamp) + ".png"));
+                StringBuilder picture = new StringBuilder("image").append("_")
+                        .append(date.format(timeStamp)).append(".png");
+                post.setPicturename(picture.toString());
+            } catch (Exception e) {
+                throw new RuntimeException("Image save failed", e);
+            }
+        }
+        
         postService.editPost(post.getPostId(), post);
         return "redirect:/posts";
     }

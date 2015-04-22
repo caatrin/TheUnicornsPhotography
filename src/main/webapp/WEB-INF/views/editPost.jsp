@@ -7,9 +7,10 @@
         <title>Edit Post</title>
     </head>
     <body>
-          <form:form commandName="post" action="updatePost" method="post">
+          <form:form commandName="post" action="updatePost" method="post" enctype="multipart/form-data">
             <form:errors path="*" cssClass="errorblock" element="div" />
             <form:hidden path="postId" value="${post.postId}"/>
+            <form:hidden path="picturename" value="${post.picturename}"/>
             <table>
                 <tr>
                     <td>Title:</td>                   
@@ -17,6 +18,11 @@
                         <form:input path="title" />
                     </td>
                     <td><form:errors path="title" cssClass="error" /> </td>
+                </tr>
+                <tr>
+                    <td>Image:</td>
+                    <td><form:input id="picturename" name="picturename" type="file" path="imageFile"/></td>
+                    <td><form:errors path="picturename" cssClass="error" /> </td>
                 </tr>
                 <tr>
                     <td>Description:</td>
