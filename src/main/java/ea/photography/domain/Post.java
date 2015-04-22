@@ -11,7 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Post {
@@ -23,6 +25,8 @@ public class Post {
     private String title;
     @NotBlank
     private String description;
+    @Transient
+    private MultipartFile imageFile;
     private String picturename;
     @Temporal(TemporalType.DATE)
     private Date postDate;
@@ -36,7 +40,6 @@ public class Post {
     public Post() {
     }
 
-    
     public Long getPostId() {
         return postId;
     }
@@ -61,14 +64,6 @@ public class Post {
         this.description = description;
     }
 
-    public String getPicturename() {
-        return picturename;
-    }
-
-    public void setPicturename(String picturename) {
-        this.picturename = picturename;
-    }
-
     public List<Comment> getComments() {
         return comments;
     }
@@ -91,7 +86,21 @@ public class Post {
 
     public void setPostDate(Date postDate) {
         this.postDate = postDate;
-    }  
-    
-    
+    }
+
+    public MultipartFile getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(MultipartFile imageFile) {
+        this.imageFile = imageFile;
+    }
+
+    public String getPicturename() {
+        return picturename;
+    }
+
+    public void setPicturename(String picturename) {
+        this.picturename = picturename;
+    }
 }
