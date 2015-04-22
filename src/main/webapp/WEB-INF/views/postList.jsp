@@ -13,6 +13,7 @@
         <h1>Welcome to The Unicorn's Photography!</h1>
         <table class="CSS_Table_Example">
             <th>Title</th>
+            <th>Image</th>
             <th>Description</th>
             <th>Created Date</th>
             <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -21,6 +22,8 @@
                 <c:forEach var="post" items="${postList}">
                 <tr>
                     <td><a href="postDetail/${post.postId}">${post.title}</a></td>
+<!--                    <td><img src="${picturePath}${post.picturename}" alt="Postpic"/></td>-->
+                    <td><img src="/img/coursera.png" /></td>
                     <td>${post.description}</td>
                     <td>${post.postDate}</td>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
