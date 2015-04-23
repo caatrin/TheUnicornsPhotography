@@ -9,13 +9,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Login Failed</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <style type="text/css">
+            body { background: #fbece6; }
+        </style>
     </head>
     <body>
-        <h1 id="mainHead">Login Failed, please try again!</h1>
-        <div>
-            <form:form action="posts" method="get">
-                <input type="submit"  value = "login"/>
-            </form:form>
+        <div class="container">
+            <div class="jumbotron">
+                <h1 id="mainHead">Login Failed, please try again!</h1>
+            </div>
+            <div>
+                <form:form action="posts" method="get">
+                    <input type="submit"  value = "login" class="btn btn-info btn-lg"/>
+                </form:form>
+            </div>
         </div>
     </body>
 </html>

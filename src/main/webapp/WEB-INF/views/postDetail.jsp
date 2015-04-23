@@ -7,29 +7,32 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Post Details</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <style type="text/css">
+            body { background: #fbece6; }
+        </style>
     </head>
     <body>
-        <h1>Post details</h1>
-        <table>
-            <tr>
-                <td>Title:</td>
-                <td><input path="title" value="${post.title}" /> </td>
-            </tr>
-            <tr>
-                <td>Description:</td>
-                <td><input path="description" value="${post.description}"/> </td>
-            </tr>
-        </table>
-
+         <div class="container">
+             <div class="jumbotron">
+        <h1>Post Details</h1>
+        </div>
+             <div class="form-group">
+        Title:
+        <input path="title" value="${post.title}" class="form-control" /> 
+             </div>
+        <div class="form-group">
+        Description:
+        <input path="description" value="${post.description}" class="form-control"/> 
+        </div>
         <form:form commandName="comment" action="addComment" method="post">
-            <form:errors path="*" cssClass="errorblock" element="div" />
-            <div>
+            <%--<form:errors path="*" cssClass="errorblock" element="div" />--%>
+            <div class="form-group">
                 Comment: <br/>
-                <form:textarea path="comment" /> 
+                <form:textarea path="comment" class="form-control"/> 
                 <form:hidden path="post.postId" value="${post.postId}"/>
                 <form:errors path="comment" cssClass="error" />
             </div>
-            <input type="submit" value="Add Comment" />
+            <input type="submit" value="Add Comment" class="btn btn-info btn-lg"/>
 
         </form:form>
 
@@ -40,5 +43,6 @@
         </div>
         <a href="../posts">Go Back</a>
         <a href="../j_spring_security_logout">logout</a>
+         </div>
     </body>
 </html>
