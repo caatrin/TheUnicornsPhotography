@@ -13,40 +13,21 @@
         </style>
     </head>
     <body>
-<<<<<<< HEAD
-        <div class="container">            
+        <div class="container"> 
+             <div class="jumbotron">
             <h1 class="text-center">${post.title}</h1>
+             </div>
             <p><img src="<c:url value='/img/${post.picturename}'/>" class="img-responsive center-block"/></p>            
             <p class="text-center">${post.description}</p>
-        
-=======
-         <div class="container">
-             <div class="jumbotron">
-        <h1>Post Details</h1>
-        </div>
-             <div class="form-group">
-        Title:
-        <input path="title" value="${post.title}" class="form-control" /> 
-             </div>
-        <div class="form-group">
-        Description:
-        <input path="description" value="${post.description}" class="form-control"/> 
-        </div>
->>>>>>> feature_css
-        <form:form commandName="comment" action="addComment" method="post">
+      <form:form commandName="comment" action="addComment" method="post">
             <%--<form:errors path="*" cssClass="errorblock" element="div" />--%>
             <div class="form-group">
                 Comment: <br/>
-<<<<<<< HEAD
-                <form:textarea path="comment" cols="150"/> 
-=======
-                <form:textarea path="comment" class="form-control"/> 
->>>>>>> feature_css
+                <form:textarea path="comment" cols="150" class="form-control"/> 
                 <form:hidden path="post.postId" value="${post.postId}"/>
                 <form:errors path="comment" cssClass="error" />
             </div>
             <input type="submit" value="Add Comment" class="btn btn-info btn-lg"/>
-
         </form:form>
         <hr/>
         <div id="comments">
@@ -57,10 +38,6 @@
         </div>
         <a href="../posts">Go Back</a>
         <a href="../j_spring_security_logout">logout</a>
-<<<<<<< HEAD
         </div>
-=======
-         </div>
->>>>>>> feature_css
     </body>
 </html>
