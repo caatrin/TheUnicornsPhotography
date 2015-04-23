@@ -18,12 +18,12 @@
                 <h1>Welcome to The Unicorn's Photography!</h1>
             </div>
             <c:forEach var="post" items="${postList}">
-                <a href="postDetail/${post.postId}">${post.title}</a>
+                <h2><a href="postDetail/${post.postId}">${post.title}</a></h2>
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2><img src="<c:url value='/img/${post.picturename}'/>" class="img-thumbnail" /></h2>
+                        <h2><img src="<c:url value='/img/${post.picturename}'/>" class="img-thumbnail" style="width:250px;height:150px"/></h2>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         ${post.description}<br />
                         ${post.postDate} <br />
                         

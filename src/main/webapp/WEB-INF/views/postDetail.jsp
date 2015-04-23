@@ -32,7 +32,7 @@
         <hr/>
         <div id="comments">
             <c:forEach var="comment" items="${post.comments}">
-                <p><b>${comment.user.firstname}&nbsp;${comment.user.lastname}</b>&nbsp;said:</p>
+                <p><b>${comment.user.firstname}&nbsp;${comment.user.lastname}</b>&nbsp;said on ${comment.user.commentDate}:</p>
                 <p><blockquote>${comment.comment}</blockquote></p>               
             </c:forEach>                
         </div>
