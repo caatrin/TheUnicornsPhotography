@@ -6,11 +6,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="<c:url value="/css/table.css" />" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <title>Posts</title>
     </head>
     <body>
+        <div class="container">
+             <div class="jumbotron">
         <h1>Welcome to The Unicorn's Photography!</h1>
+        </div>
         <table class="CSS_Table_Example">
             <th>Title</th>
             <th>Image</th>
@@ -49,5 +52,6 @@
         </sec:authorize>
 
         <a href="j_spring_security_logout">logout</a>
+        </div>
     </body>
 </html>
