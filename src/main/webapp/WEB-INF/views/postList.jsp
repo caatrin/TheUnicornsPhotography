@@ -9,7 +9,7 @@
         <title>Posts</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <style type="text/css">
-            body { background: #fbece6; }
+            body { background: #fbece6 !important; }
         </style>
     </head>
     <body>
@@ -28,16 +28,22 @@
                         ${post.postDate} <br />
                         
                             <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                
+                                <table class="table">
+                                    <tr>
+                                        <td>
                                 <form:form action="editPost" method="post">                                    
                                     <input type="hidden" name="postId" value="${post.postId}">
                                     <input type="submit" value="Edit" class="btn btn-info btn-lg">
                                 </form:form>
+                                    </td>
+                                    <td>
                                 <form:form action="deletePost" method="post" >
                                     <input type="hidden" name="postId" value="${post.postId}">
                                     <input type="submit" value="Delete" class="btn btn-info btn-lg">
                                 </form:form>
-                                  
+                                    </td>
+                                  </tr>
+                                </table>
                             </sec:authorize>
                         
                     </div>
