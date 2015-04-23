@@ -9,6 +9,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Unicorns Photography</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <style type="text/css">
+            body { background: #fbece6; }
+        </style>
     </head>
     <body>
         <div class="container">
