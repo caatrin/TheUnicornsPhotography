@@ -34,7 +34,7 @@ public class PostController {
     @Autowired
     private UserService userService;
 
-    private Date timeStamp = new Date();
+   // private Date timeStamp = new Date();
 
     @RequestMapping("/")
     public String redirectRoot() {
@@ -46,6 +46,8 @@ public class PostController {
     public String getAll(Model model, HttpServletRequest request) {
         String email = request.getUserPrincipal().getName();
         User user = userService.getUserByEmail(email);
+        
+        Date timeStamp = new Date();
        
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
         StringBuilder picturePath = new StringBuilder(rootDirectory)
@@ -75,6 +77,7 @@ public class PostController {
         if (image != null && !image.isEmpty()) {
 //			System.out.println("hello from if");
             try {
+                Date timeStamp = new Date();
                 DateFormat date = new SimpleDateFormat("MM_dd_YY_hhmmss");
                 image.transferTo(new File(rootDirectory + "\\resources\\img\\"
                         + "image" + "_" + date.format(timeStamp) + ".png"));
@@ -110,6 +113,7 @@ public class PostController {
         if(image != null && !image.isEmpty()){
           String rootDirectory = request.getSession().getServletContext().getRealPath("/");
           try {
+                Date timeStamp = new Date();
                 DateFormat date = new SimpleDateFormat("MM_dd_YY_hhmmss");
                 image.transferTo(new File(rootDirectory + "\\resources\\img\\"
                         + "image" + "_" + date.format(timeStamp) + ".png"));
