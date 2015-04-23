@@ -17,8 +17,8 @@
              <div class="jumbotron">
             <h1 class="text-center">${post.title}</h1>
              </div>
-            <p><img src="<c:url value='/img/${post.picturename}'/>" class="img-responsive center-block"/></p>            
-            <p class="text-center">${post.description}</p>
+            <p><img src="<c:url value='/img/${post.picturename}'/>" class="img-responsive center-block img-rounded"/></p>            
+            <p><h3 class="text-center">${post.description}</h3></p>
       <form:form commandName="comment" action="addComment" method="post">
             <%--<form:errors path="*" cssClass="errorblock" element="div" />--%>
             <div class="form-group">
@@ -32,7 +32,7 @@
         <hr/>
         <div id="comments">
             <c:forEach var="comment" items="${post.comments}">
-                <p><b>${comment.user.firstname}&nbsp;${comment.user.lastname}</b>&nbsp;said on ${comment.user.commentDate}:</p>
+                <p><b>${comment.user.firstname}&nbsp;${comment.user.lastname}</b>&nbsp;said on ${comment.commentDate}:</p>
                 <p><blockquote>${comment.comment}</blockquote></p>               
             </c:forEach>                
         </div>

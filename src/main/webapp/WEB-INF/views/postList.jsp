@@ -21,11 +21,11 @@
                 <h2><a href="postDetail/${post.postId}">${post.title}</a></h2>
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2><img src="<c:url value='/img/${post.picturename}'/>" class="img-thumbnail" style="width:250px;height:150px"/></h2>
+                        <h2><img src="<c:url value='/img/${post.picturename}'/>" class="img-rounded" style="width:350px;height:250px"/></h2>
                     </div>
                     <div class="col-sm-6">
-                        ${post.description}<br />
-                        ${post.postDate} <br />
+                        <h3>${post.description}</h3>
+                        <h5>Posted on ${post.postDate}</h5>
                         
                             <sec:authorize access="hasRole('ROLE_ADMIN')">
                                 <table class="table">
