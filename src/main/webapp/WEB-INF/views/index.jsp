@@ -8,19 +8,31 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Unicorns Photography</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     </head>
     <body>
-        <h1 id="mainHead">Welcome to The Unicorns Photography Index</h1>
-        <div>
-            <form:form commandName="newUser" action="register" method="get">
-                <input type="submit"  value = "Register"/>
-            </form:form>
-            <br />
-
-            <form:form action="posts" method="get">
-                <input type="submit"  value = "login"/>
-            </form:form>
-        </div>	
-        <a href="posts">Go to Post List</a>
+        <div class="container">
+        <div class="jumbotron">
+            <a href="?language=en" >English</a>|<a href="?language=ro" >
+                Romanian</a>|<a href="?language=es" >Spanish</a>        
+            <h1><spring:message code="index.welcomeTitle"/></h1>
+            <!--<h1 id="mainHead">Welcome to The Unicorns Photography Index</h1>-->
+        </div>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-3">
+                <form:form commandName="newUser" action="register" method="get">
+                    <input type="submit"  value = "<spring:message code="index.register"/>" class="btn btn-info btn-lg"/>
+                    <!--<input type="submit"  value = "register"/>-->
+                </form:form>
+            </div>
+            <div class="col-sm-4">
+                <form:form action="posts" method="get">
+                    <input type="submit"  value = "<spring:message code="index.login"/>" class="btn btn-info btn-lg"/>
+                    <!--<input type="submit"  value = "login"/>-->
+                </form:form>
+            </div>
+        </div>
+            </div>
     </body>
 </html>

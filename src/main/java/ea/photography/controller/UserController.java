@@ -7,8 +7,11 @@ package ea.photography.controller;
 
 import ea.photography.domain.User;
 import ea.photography.service.UserService;
+import ea.photography.validator.PasswordValidator;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,10 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
-    
+
     @Autowired
     private UserService userService;
-    
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String displayRegister(@ModelAttribute("newUser") User user)
@@ -31,12 +33,24 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(@Valid @ModelAttribute("newUser") User user, BindingResult bindingResult)
             throws Exception {
-        if(bindingResult.hasErrors()){
+
+        PasswordValidator passwordValidator = new PasswordValidator();
+        passwordValidator.validate(user, bindingResult);
+
+        if (bindingResult.hasErrors()) {
             return "register";
         }
         user.setRole("ROLE_USER");
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
         userService.createUser(user);
         return "login";
+    }
+
+    @RequestMapping(value = "/loginfailed", method = RequestMethod.GET)
+    public String displayLoginFailed() {
+        return "loginfailed";
     }
 
 }

@@ -5,6 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edit Post</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     </head>
     <body>
           <form:form commandName="post" action="updatePost" method="post" enctype="multipart/form-data">
@@ -31,7 +32,9 @@
                 </tr>
             </table>
                 <input type="submit" value="Edit Post" />
-
-        </form:form>
+            </form:form>
+            <a href="posts">Go Back</a>
+            <a href="j_spring_security_logout">logout</a>
+        </div>
     </body>
 </html>
