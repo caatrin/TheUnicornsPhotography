@@ -69,11 +69,6 @@
     
     <!-- needed for security tag lib expression support -->
     <bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" /> 
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> feature_validation&Password
     <bean id="dataSource" 
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
