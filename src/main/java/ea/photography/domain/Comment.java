@@ -1,7 +1,9 @@
 package ea.photography.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -61,7 +63,7 @@ public class Comment {
     public void setUser(User user) {
         this.user = user;
     }
-
+    @JsonIgnore
     public Post getPost() {
         return post;
     }

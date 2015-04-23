@@ -103,7 +103,7 @@ public class PostController {
     }
 
     @RequestMapping(value = "/updatePost", method = RequestMethod.POST)
-    public String editPost(@Valid @ModelAttribute("post") Post post, HttpServletRequest request, BindingResult br) {
+    public String editPost(@Valid @ModelAttribute("post") Post post, HttpServletRequest request, BindingResult br, Model model) {
         if (br.hasErrors()) {
             return "editPost";
         }
@@ -124,7 +124,8 @@ public class PostController {
                 throw new RuntimeException("Image save failed", e);
             }
         }
-        
+         User user = (User) model.asMap().get("user");
+        post.setAuthor(user);
         postService.editPost(post.getPostId(), post);
         return "redirect:/posts";
     }
