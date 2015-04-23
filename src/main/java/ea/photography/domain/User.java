@@ -1,15 +1,14 @@
 package ea.photography.domain;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Transient;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class User implements Serializable {
@@ -19,14 +18,23 @@ public class User implements Serializable {
     @Id
     @GeneratedValue
     private Long userId;
-    @NotNull
     @Column(nullable = false, unique = true)
+    @Email
+//    @NotEmpty(message = "{NotEmpty.user.email.validation}")
+    @NotEmpty(message = "Email field must have a value")
     private String email;
+//    @NotEmpty(message = "{NotEmpty.user.password.validation}")
+    @NotEmpty(message = "Password field must have a value")
     private String password;
+    @Transient
+//    @NotEmpty(message = "{NotEmpty.user.confirmPassword.validation}")
+    @NotEmpty(message = "Confirm Password field must have a value")
     private String confirmPassword;
-    @NotNull
+//    @NotEmpty(message = "{NotEmpty.user.firstName.validation")
+    @NotEmpty(message = "First name field must have a value")
     private String firstname;
-    @NotNull
+//    @NotEmpty(message = "{NotEmpty.user.lastName.validation}")
+    @NotEmpty(message = "Last name field must have a value")
     private String lastname;
     private String role;
     private boolean enabled;

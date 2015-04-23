@@ -6,6 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Post Details</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     </head>
     <body>
         <h1>Post details</h1>
@@ -37,7 +38,7 @@
                 <p>${comment.comment}</p>               
             </c:forEach>                
         </div>
-
+        <a href="../posts">Go Back</a>
         <a href="../j_spring_security_logout">logout</a>
     </body>
 </html>
