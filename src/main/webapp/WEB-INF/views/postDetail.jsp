@@ -13,11 +13,11 @@
         <table>
             <tr>
                 <td>Title:</td>
-                <td><input path="title" value="${post.title}" /> </td>
+                <td><p>${post.title}"</p>
             </tr>
             <tr>
                 <td>Description:</td>
-                <td><input path="description" value="${post.description}"/> </td>
+                <td><p>${post.description}</p>
             </tr>
         </table>
 
@@ -35,7 +35,8 @@
 
         <div id="comments">
             <c:forEach var="comment" items="${post.comments}">
-                <p>${comment.comment}</p>               
+                <p><b>${comment.user.firstname}&nbsp;${comment.user.lastname}</b>&nbsp;said:</p>
+                <p><blockquote>${comment.comment}</blockquote></p>               
             </c:forEach>                
         </div>
         <a href="../posts">Go Back</a>
